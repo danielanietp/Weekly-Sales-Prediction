@@ -428,6 +428,8 @@ The variance across stores decreases after SVD smoothing. For example, for depar
 
 # Conclusions
 
-Overall, the analysis reveals a strong low-rank structure in department-level sales, driven by high inter-store correlation and a dominant shared temporal pattern. SVD smoothing preserves the core demand signal while reducing variance, indicating that primarily noise is removed and most structured variation remains intact.
+The analysis reveals a strong low-rank structure in department-level sales, driven by high inter-store correlation and a dominant shared temporal pattern. SVD smoothing preserves the core demand signal while reducing variance, confirming that primarily noise is removed and most structured variation remains intact.
 
-Additionally, fitting a linear model separately for each store also produced strong performance, reinforcing the conclusion that sales dynamics are highly predictable and largely governed by common trend and seasonal components. Together, these results confirm that both low-rank decomposition and store-level modeling effectively capture the underlying structure of the data.
+Fitting a linear model separately for each store produced strong and consistent performance, with a mean WMAE of 14,007 and a standard deviation of 918 across 10 folds. The low variance across folds suggests the pipeline generalizes well rather than overfitting to any particular split. Holiday postprocessing proved meaningful given that holiday weeks are weighted 5x in evaluation — even small improvements in weeks 48–52 have an outsized effect on the final score.
+
+Together, these results confirm that low-rank decomposition combined with store-level temporal modeling effectively captures the underlying structure of weekly retail sales. A natural next step would be incorporating store-level features — size, type, and regional markdowns — to capture demand patterns that a purely temporal model leaves on the table.
